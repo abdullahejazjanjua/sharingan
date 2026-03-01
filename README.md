@@ -2,7 +2,7 @@
 
 A CLI tool that peeks into your local DNS resolver's cache to find out which websites are popular in your area.
 
-> Note: This project is for educational purposes only. It is designed to demonstrate DNS caching mechanisms and the concept of automatic programming.
+> Note: This project is for educational purposes only. It is designed to demonstrate DNS caching mechanisms.
 ## How It Works
 
 When someone on your network visits a website, the DNS resolver caches the lookup. Sharingan takes multiple snapshots of the cache over time (separated by 300s, matching common DNS TTL expiry). A domain that keeps reappearing across snapshots is genuinely popular -- local users keep visiting it, causing it to be re-cached after each TTL expiry.
