@@ -1,16 +1,24 @@
 # Sharingan
 
-A CLI tool that peeks into your local DNS resolver's cache to find out which websites are popular in your area. It checks a list of well-known domains against the local DNS cache and ranks them by how long they've been sitting there — the longer a record has been cached, the higher it ranks.
+A CLI tool that peeks into your local DNS resolver's cache to find out which websites are popular in your area.
 
 ## How It Works
 
-When someone on your network visits a website, the DNS resolver caches the lookup. Sharingan sends non-recursive queries (meaning it only checks what's already cached, without triggering new lookups) to your local DNS resolver for a list of domains. If a domain is found in the cache, it shows up in the results along with its remaining TTL. Lower remaining TTL means the record has been in cache longer, which implies it was visited earlier and is likely accessed frequently enough to stay cached.
+When someone on your network visits a website, the DNS resolver caches the lookup. Sharingan takes multiple snapshots of the cache over time (separated by 300s, matching common DNS TTL expiry). A domain that keeps reappearing across snapshots is genuinely popular -- local users keep visiting it, causing it to be re-cached after each TTL expiry.
 
-Results are displayed with a popularity ranking, color-coded output, and visual bars in the terminal.
+Domains are ranked by how many snapshots they appeared in. The one seen most frequently across rounds is the most popular. Domains never found in any snapshot are listed separately.
+
+All queries are non-recursive (RD=0), meaning the tool only reads what's already cached without triggering new lookups.
 
 ## Preview
 
-![Usage](assets/usage.png)
+Scanning phase with live countdown timer:
+
+![Scanning](assets/usage0.png)
+
+Frequency-based popularity ranking after all rounds:
+
+![Results](assets/usage1.png)
 
 ## Requirements
 
@@ -20,17 +28,21 @@ Results are displayed with a popularity ranking, color-coded output, and visual 
 ## Setup
 
 ```bash
+git clone git@github.com:abdullahejazjanjua/sharingan.git
+cd sharingan
 conda create -n sharingan python=3.11 -y
 conda activate sharingan
 pip install -r requirements.txt
-
 ```
 
 ## Usage
 
 ```bash
-# Check all domains against the real local DNS resolver
+# Check all domains, 3 rounds (default)
 python main.py
+
+# Single snapshot (no waiting between rounds)
+python main.py --rounds 1
 
 # Test mode — uses Google's public DNS (8.8.8.8) instead of local
 python main.py --test
@@ -38,8 +50,8 @@ python main.py --test
 # Only check the first 5 domains from the list
 python main.py --nums 5
 
-# Combine both
-python main.py --test --nums 3
+# 5 rounds, test mode, first 3 domains
+python main.py --rounds 5 --test --nums 3
 
 ```
 
