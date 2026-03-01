@@ -58,7 +58,7 @@ python main.py --rounds 5 --test --nums 3
 
 ## AI Disclaimer
 
-This tool was built using [Automatic Programming](https://antirez.com/news/159), a term coined by [antirez](https://github.com/antirez) to describe a high-quality software production process guided by human intuition, design, and continuous steering. This project was shaped by strict architectural decisions and technical oversight:
+This project was born out of a desire to build this tool while lacking the necessary time to write every line of code manually. I decided to use this as an experiment to see how AI has fundamentally changed the coding process.
 
 * I provided the initial requirements and constraints for the project.
 * I asked the AI to produce a plan before writing any code. I reviewed the plan and gave the go-ahead only after I was satisfied with the approach.
@@ -66,4 +66,4 @@ This tool was built using [Automatic Programming](https://antirez.com/news/159),
 * I directed the restructuring to reduce file clutter and shaped the output style.
 * No code was written by hand, only prompts and review.
 
-As [antirez](https://github.com/antirez) notes, "Programming is now automatic, vision is not." This software is a product of that vision.
+The result is a functional tool where the programming was automated, but the technical vision and quality control remained entirely mine.
