@@ -12,13 +12,13 @@ All queries are non-recursive (RD=0), meaning the tool only reads what's already
 
 ## Preview
 
-Scanning phase with live countdown timer:
-
-![Scanning](assets/usage0.png)
-
-Frequency-based popularity ranking after all rounds:
-
-![Results](assets/usage1.png)
+<div align="center">
+  <img src="assets/usage0.png" alt="Scanning">
+  <p>Scanning phase with live countdown timer</p>
+  <br>
+  <img src="assets/usage1.png" alt="Results">
+  <p>Frequency-based popularity ranking after all rounds</p>
+</div>
 
 ## Requirements
 
