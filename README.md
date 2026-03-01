@@ -8,7 +8,7 @@ When someone on your network visits a website, the DNS resolver caches the looku
 
 Results are displayed with a popularity ranking, color-coded output, and visual bars in the terminal.
 
-## Showcase
+## Preview
 
 ![Usage](assets/usage.png)
 
